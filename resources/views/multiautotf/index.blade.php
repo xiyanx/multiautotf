@@ -104,7 +104,6 @@
 </div>
 <div class="modal fade" tabindex="-1" id="kt_modal_1">
     <div class="modal-dialog modal-fullscreen">
-        <form type="POST" enctype='multipart/form-data' id="formUploadExcel">
             <div class="modal-content" id="kt_block_ui_1_target">
                 <div class="modal-header">
                     <h3 class="modal-title">Form Excel</h3>
@@ -116,405 +115,15 @@
                     <!--end::Close-->
                 </div>
                 <div class="modal-body">
-                    <div class="mb-10">
-                        <label class="form-label">Input</label>
-                        <input type="file" class="form-control" id="file" name="file" placeholder="">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Effective Date</label>
-                                </div>
-                                <div class="col-8">
-                                    <input class="form-control" placeholder="Pick a date" id="effective_date"
-                                        name="effective_date" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Corporate ID</label>
-                                </div>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" placeholder="" id="corporate_id"
-                                        name="corporate_id" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Header ID</label>
-                                </div>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" placeholder="" id="header_id"
-                                        name="header_id" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Dependency Header ID</label>
-                                </div>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" placeholder="" id="dependency_header_id"
-                                        name="dependency_header_id" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Statement Type</label>
-                                </div>
-                                <div class="col-8">
-                                    <select class="form-select" aria-label="Select example" id="statement_type"
-                                        name="statement_type">
-                                        <option>Open this option</option>
-                                        <option value="1">Single Debit</option>
-                                        <option value="2">Multi Debit</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Currency</label>
-                                </div>
-                                <div class="col-8">
-                                    <select class="form-select" aria-label="Select example" id="statement_type"
-                                        name="statement_type">
-                                        <option>Open this option</option>
-                                        <option value="1">IDR</option>
-                                        <option value="2">USD</option>
-                                        <option value="3">JPY</option>
-                                        <option value="4">AUD</option>
-                                        <option value="5">GBP</option>
-                                        <option value="6">SGD</option>
-                                        <option value="7">HKD</option>
-                                        <option value="8">EUR</option>
-                                        <option value="9">CNY</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Charges Type</label>
-                                </div>
-                                <div class="col-8">
-                                    <select class="form-select" aria-label="Select example" id="statement_type"
-                                        name="statement_type">
-                                        <option>Open this option</option>
-                                        <option value="1">Default</option>
-                                        <option value="2">Beneficiary</option>
-                                        <option value="3">Sharing</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Remarks 1</label>
-                                </div>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" placeholder="" id="remarks_1"
-                                        name="remarks_1" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Remarks 2</label>
-                                </div>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" placeholder="" id="remarks_2"
-                                        name="remarks_2" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Business Type</label>
-                                </div>
-                                <div class="col-8">
-                                    <select class="form-select" aria-label="Select example" id="statement_type"
-                                        name="statement_type">
-                                        <option>Open this option</option>
-                                        <option value="1">Pertanian</option>
-                                        <option value="2">Pertambangan dan Penggalian</option>
-                                        <option value="3">Industri Pengolahan</option>
-                                        <option value="4">Listrik, Gas dan Air Minum</option>
-                                        <option value="5">Bangunan / Konstruksi</option>
-                                        <option value="6">Perdangan, Hotel dan Restoran</option>
-                                        <option value="7">Angkutan dan Komunikasi</option>
-                                        <option value="8">Keuangan, Persewaan dan Jasa Perusahaan</option>
-                                        <option value="9">Jasa</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Effective Date</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <input class="form-control" placeholder="Pick a date" id="effective_date"
-                                                name="effective_date" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Transaction ID</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Transfer type</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Debited Account</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Beneficiary ID</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Credited Account</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Amount</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Trx Purpose</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Currency</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-6">
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Charges Account</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Remarks 1</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Remarks 2</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Rcv Bank Code</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Rcv Bank Name</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Rcv Name</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Cust Type</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Cust Residence</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-4">
-                                            <label for="" class="form-label mt-4">Trx Code</label>
-                                        </div>
-                                        <div class="col-8">
-                                            <select class="form-select" aria-label="Select example" id="statement_type"
-                                                name="statement_type">
-                                                <option>Open this option</option>
-                                                <option value="1">Single Debit</option>
-                                                <option value="2">Multi Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
+                <form type="POST" enctype='multipart/form-data' id="formUploadExcel">
+                    <div id="mainFrame"></div>
+                </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" id="exportButton">Export</button>
-                    <a href="{{ route('export.file') }}" class="btn btn-primary">Export File</a>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal" id="btnClose">Close</button>
 
                 </div>
             </div>
-        </form>
     </div>
 </div>
 <!--begin::Footer-->
@@ -525,6 +134,12 @@
 var target = document.querySelector("#kt_block_ui_1_target");
 var blockUI = new KTBlockUI(target);
 var table;
+
+$(document).on('click', '#tambahData', function(){
+    $('#mainFrame').load('/load-frame-proses1');
+})
+
+
 $(document).ready(function() {
     $('#exportButton').click(function() {
         $.ajax({
@@ -534,16 +149,17 @@ $(document).ready(function() {
                 _token: '{{ csrf_token() }}'
             },
             success: function(response) {
-                // Handle success response here
-                console.log('Export completed.');
+                console.log(response);
+                if (response.code == "200" ) {
+                    window.open("<?= url('/export-file-download') ?>?name="+response.filename);
+                }
             },
             error: function(xhr, status, error) {
-                // Handle error response here
                 console.error(error);
             }
         });
     });
-    $("#effective_date").flatpickr();
+    
     table = $('#table').DataTable({
         processing: true,
         serverSide: true,
@@ -687,28 +303,14 @@ $('#formUploadExcel').on('submit', (function(e) {
         cache: false,
         processData: false,
         success: function(response) {
-            blockUI.release();
             console.log(response);
-            // if ($.isEmptyObject(response.error)) {
-
-            //     if (response.code == "200") {
-            //        table.draw();
-
-            //         toastr.success("Berhasil mengupload data!");
-            //         $('#file').val('');
-            //         blockUI1.release();
-            //         var myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById(
-            //             'UploadExcel'));
-            //         myModal.hide();
-            //     } else {
-            //         alert('Gagal upload data')
-
-            //     }
-
-
-            // } else {
-            //     alert('Gagal upload data')
-            // }
+            blockUI.release();
+            if(response.code == "200" && response.state == "1"){
+                $('#mainFrame').load('/load-frame-proses2');
+            } else if(response.code == "200" && response.state == "2"){
+                $('#btnClose').click();
+                window.open("<?= url('/export-file-download') ?>?name="+response.filename);
+            }
 
         },
         error: function(error) {

@@ -20,5 +20,9 @@ Route::get('/', [MultiAutoTfController::class, 'index']);
 Route::post('/upload-excel-multi-auto-tf', [MultiAutoTfController::class, 'UploadMultiAutoTfExcel']);
 Route::get('/load-data-trx-multi-auto-ajax', [MultiAutoTfController::class, 'LoadDataTrxMultiAutoAjax']);
 Route::post('/export-data-trx-multi-auto-ajax', [MultiAutoTfController::class, 'ExportMultiAutoTfTxt'])->name('ExportMultiAutoTfTxt');
-Route::get('/export-file', [MultiAutoTfController::class, 'ExportMultiAutoTfTxt'])->name('export.file');
+Route::get('/export-file-download', [MultiAutoTfController::class, 'ExportFileDowload'])->name('ExportFileDowload');
+Route::get('/load-frame-proses1', [MultiAutoTfController::class, 'LoadFrameProses1'])->name('LoadFrameProses1');
+Route::get('/load-frame-proses2', [MultiAutoTfController::class, 'LoadFrameProses2'])->name('LoadFrameProses2');
+
+Route::post('/store', [MultiAutoTfController::class, 'store'])->name('user.store');
 

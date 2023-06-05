@@ -36,7 +36,8 @@ class MultiAutoTf implements ToModel, WithHeadingRow
                 "cust_type" => $row["cust_type"],
                 "cust_residence" => $row["cust_residence"],
                 "trx_code" => $row["trx_code"],
-                "email" => $row["email"]
+                "email" => $row["email"],
+                "status_proses" => 1
             ]);
         }
              
