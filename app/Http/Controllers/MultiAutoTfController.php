@@ -165,6 +165,7 @@ class MultiAutoTfController extends Controller
                 $corporate_id = $ceklastdata->corporate_id;
         } else {
                 $header_id = 1;
+                $corporate_id = "";
         }
         return view('multiautotf.frame.proses2',['header_id' => $header_id], ['corporate_id' => $corporate_id]);
     }
