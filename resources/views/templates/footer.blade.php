@@ -1068,58 +1068,58 @@
 		@yield('footer')
 		<script>
 		
-				var socket = io.connect('https://api2.ptuma.com', {path: '/socket.io'});
-					socket.on('new-notification', function(msg) {
-						toastr.options = {
-							"closeButton": false,
-							"debug": false,
-							"newestOnTop": false,
-							"progressBar": false,
-							"positionClass": "toastr-top-right",
-							"preventDuplicates": false,
-							"onclick": null,
-							"showDuration": "0",
-							"hideDuration": "1000",
-							"timeOut": "100000",
-							"extendedTimeOut": "0",
-							"showEasing": "swing",
-							"hideEasing": "linear",
-							"showMethod": "fadeIn",
-							"hideMethod": "fadeOut"
-							};
+				// var socket = io.connect('https://api2.ptuma.com', {path: '/socket.io'});
+				// 	socket.on('new-notification', function(msg) {
+				// 		toastr.options = {
+				// 			"closeButton": false,
+				// 			"debug": false,
+				// 			"newestOnTop": false,
+				// 			"progressBar": false,
+				// 			"positionClass": "toastr-top-right",
+				// 			"preventDuplicates": false,
+				// 			"onclick": null,
+				// 			"showDuration": "0",
+				// 			"hideDuration": "1000",
+				// 			"timeOut": "100000",
+				// 			"extendedTimeOut": "0",
+				// 			"showEasing": "swing",
+				// 			"hideEasing": "linear",
+				// 			"showMethod": "fadeIn",
+				// 			"hideMethod": "fadeOut"
+				// 			};
 
-							toastr.warning(msg, "Peringatan");
+				// 			toastr.warning(msg, "Peringatan");
 	
-					});
+				// 	});
 					
 
-					function ActionJD(id, status) {
-							const varurl = "<?= url('/update-jadwal-diskon-status') ?>";
-								$.ajax({
-									url: varurl,
-									type: "POST",
-									headers: {
-											'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-									},
-									data:{
-										id : id,
-										status : status
-									},
-									success:function(response){
-										if(response.code == "200") {
-											window.location.reload();
-										} else {
-											console.log(response);
-											alert('Terjadi kesalahan')
-											blockUI.release();
-										 }
-										},
-									error: function(error) {
+				// 	function ActionJD(id, status) {
+				// 			const varurl = "<?= url('/update-jadwal-diskon-status') ?>";
+				// 				$.ajax({
+				// 					url: varurl,
+				// 					type: "POST",
+				// 					headers: {
+				// 							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				// 					},
+				// 					data:{
+				// 						id : id,
+				// 						status : status
+				// 					},
+				// 					success:function(response){
+				// 						if(response.code == "200") {
+				// 							window.location.reload();
+				// 						} else {
+				// 							console.log(response);
+				// 							alert('Terjadi kesalahan')
+				// 							blockUI.release();
+				// 						 }
+				// 						},
+				// 					error: function(error) {
 										
-									console.log(error);
-									}
-						}); 
-					}
+				// 					console.log(error);
+				// 					}
+				// 		}); 
+				// 	}
 
 
 					

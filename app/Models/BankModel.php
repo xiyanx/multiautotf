@@ -31,6 +31,8 @@ class BankModel extends Model
         'cust_residence',
         'trx_code',
         'email',
+        'status_proses',
+        'id_setting',
         'deleted_at',
         'created_at',
         'updated_at'
