@@ -303,13 +303,12 @@ $('#formUploadExcel').on('submit', (function(e) {
         cache: false,
         processData: false,
         success: function(response) {
-            console.log(response);
             blockUI.release();
             if(response.code == "200" && response.state == "1"){
                 $('#mainFrame').load('/load-frame-proses2');
             } else if(response.code == "200" && response.state == "2"){
-                $('#btnClose').click();
                 window.open("<?= url('/export-file-download') ?>?name="+response.filename);
+                table.draw();
             }
 
         },
