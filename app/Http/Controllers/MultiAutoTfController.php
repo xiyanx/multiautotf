@@ -63,6 +63,7 @@ class MultiAutoTfController extends Controller
                     $date1 = $now->format('Ymd');
                     $date2 = $now->format('ymd');
                     // tanggal bulan nomor urut
+
                     $header_id = str_pad($date2.$request->header_id, 8, "0", STR_PAD_LEFT);
                     $business_type = "0".$request->business_type;
 

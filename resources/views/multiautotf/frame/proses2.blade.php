@@ -16,6 +16,9 @@
             <div class="col-8">
                 <input class="form-control" type="text" placeholder="" id="corporate_id" name="corporate_id"
                     value="<?= $corporate_id ?>" />
+                <h5 id="corcheck" style="color: red;">
+                    **Corporate ID is missing
+                </h5>
             </div>
         </div>
         <div class="row mb-3">
@@ -282,7 +285,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="submitbtn">Submit</button>
             </div>
         </div>
 
@@ -292,6 +295,39 @@
     $(document).ready(function () {
         $('#dependency_header_id').prop('disabled', true);
         $("#effective_date").flatpickr();
+         
+        // Validate Corporate ID
+        $("#corcheck").hide();
+        let corporate_id_Error = true;
+        $("#corporate_id").keyup(function () {
+            validateCorporateID();
+        });
+    
+        function validateCorporateID() {
+            let corporate_id_Value = $("#corporate_id").val();
+            if (corporate_id_Value.length == "") {
+                $("#corcheck").show();
+                corporate_id_Error = false;
+                return false;
+            } else if (corporate_id_Value.length < 10 || corporate_id_Value.length > 10) {
+                $("#corcheck").show();
+                $("#corcheck").html("**length of corporate id must be 10");
+                corporate_id_Error = false;
+                return false;
+            } else {
+                $("#corcheck").hide();
+            }
+        }
+    
+        // Submit button
+        $("#submitbtn").click(function () {
+            validateCorporateID();
+            if (corporate_id_Error == true) {
+                $("#submitbtn").attr("disabled", true);
+            } else {
+                $("#submitbtn").attr("disabled", false);
+            }
+        });
     })
 
 </script>

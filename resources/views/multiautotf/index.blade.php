@@ -131,7 +131,7 @@
                             <table class="table" id="dynamicAddRemove">
                                 <tr>
                                     <th>Fund</th>
-                                    <th>Action</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 <tr>
