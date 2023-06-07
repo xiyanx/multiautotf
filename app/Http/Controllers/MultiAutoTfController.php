@@ -52,7 +52,7 @@ class MultiAutoTfController extends Controller
                     $date1 = $now->format('Ymd');
                     $date2 = $now->format('ymd');
                     // tanggal bulan nomor urut
-                    $header_id = str_pad($date2+$request->header_id, 8, "0", STR_PAD_LEFT);
+                    $header_id = str_pad($date2.$request->header_id, 8, "0", STR_PAD_LEFT);
                     $business_type = "0".$request->business_type;
 
 
@@ -331,7 +331,14 @@ class MultiAutoTfController extends Controller
         $ceklastdata = SettingModel::orderBy('id', 'desc')->first();
         if($ceklastdata && $ceklastdata->header_id != "")
         {
-                $header_id = $ceklastdata->header_id + 1;
+                $now = new \DateTime();
+                $date = $now->format('Y-m-d');
+                if($ceklastdata && $ceklastdata->effective_date == $date)
+                {
+                        $header_id = $ceklastdata->header_id + 1;
+                } else {
+                        $header_id = 1;
+                }
                 $corporate_id = $ceklastdata->corporate_id;
         } else {
                 $header_id = 1;
