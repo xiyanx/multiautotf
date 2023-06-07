@@ -3,28 +3,10 @@
     <div class="col-md-4">
         <div class="row mb-3">
             <div class="col-4">
-                <label for="" class="form-label mt-4">Debited Account Fund</label>
-            </div>
-            <div class="col-8">
-                <input class="form-control" type="text" placeholder="" id="debited_account_fund" name="debited_account_fund"
-                    value="" />
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-4">
-                <label for="" class="form-label mt-4">Debited Account Charge</label>
-            </div>
-            <div class="col-8">
-                <input class="form-control" type="text" placeholder="" id="debited_account_charge" name="debited_account_charge"
-                    value="" />
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-4">
                 <label for="" class="form-label mt-4">Effective Date</label>
             </div>
             <div class="col-8">
-                <input class="form-control" placeholder="Pick a date" id="effective_date" name="effective_date" />
+                <input class="form-control" placeholder="Pick a date" id="effective_date" name="effective_date" value="<?= $date_now ?>" />
             </div>
         </div>
         <div class="row mb-3">
@@ -71,15 +53,7 @@
             </div>
             <div class="col-8">
                 <select class="form-select" aria-label="Select example" id="currency" name="currency">
-                    <option value="1">IDR</option>
-                    <option value="2">USD</option>
-                    <option value="3">JPY</option>
-                    <option value="4">AUD</option>
-                    <option value="5">GBP</option>
-                    <option value="6">SGD</option>
-                    <option value="7">HKD</option>
-                    <option value="8">EUR</option>
-                    <option value="9">CNY</option>
+                    <option value="IDR">IDR</option>
                 </select>
             </div>
         </div>
@@ -90,8 +64,6 @@
             <div class="col-8">
                 <select class="form-select" aria-label="Select example" id="charges_type" name="charges_type">
                     <option value="OUR">Default</option>
-                    <option value="BEN">Beneficiary</option>
-                    <option value="SHA">Sharing</option>
                 </select>
             </div>
         </div>
@@ -319,8 +291,6 @@
 <script>
     $(document).ready(function () {
         $('#dependency_header_id').prop('disabled', true);
-        $('#currency').prop('disabled', true);
-        $('#charges_type').prop('disabled', true);
         $("#effective_date").flatpickr();
     })
 

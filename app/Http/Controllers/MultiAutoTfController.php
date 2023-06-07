@@ -15,7 +15,16 @@ class MultiAutoTfController extends Controller
     public function index(Request $request)
     {
         $data = SettingModel::all();
-        return view('multiautotf.index', compact('data'));
+        $ceklastdata = SettingModel::orderBy('id', 'desc')->first();
+        if($ceklastdata && $ceklastdata->header_id != "")
+        {
+            $debited_account_fund = $ceklastdata->debited_account_fund;
+            $debited_account_charge = $ceklastdata->debited_account_charge;
+        } else {
+            $debited_account_fund = "";
+            $debited_account_charge = "";
+        }
+        return view('multiautotf.index', compact('data'), ['debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge]);
     }
      // =======================================================================================================================================================================
      public function UploadMultiAutoTfExcel(Request $request)
@@ -23,7 +32,7 @@ class MultiAutoTfController extends Controller
         // return response()->json(['code' => '400', 'data' => $request->all()]);
         if($request->state == "1") {
             // DB::table('tb_trx_multi_auto')->truncate();
-            $data =  Excel::import(new MultiAutoTf, $request->file);
+            $data = Excel::import(new MultiAutoTf, $request->file);
             $data = DB::table('tb_trx_multi_auto')->get();
             return response()->json(['code' => '200', 'message'=> 'Berhasil mengupload data', 'state' => 1]);
          } else {
@@ -117,7 +126,7 @@ class MultiAutoTfController extends Controller
                     }
 
                     $data = DB::table('tb_trx_multi_auto')->select($arrget)->where("status_proses" ,2)->where("id_setting" , '!=', null)->get();
-                    $txt = "0|FT|$request->statement_type|$request->corporate_id|$header_id|$date1||$request->debited_account_fund|$request->charges_type||00008|$request->currency|B|$business_type|".strtoupper(date("d M"))."\n";
+                    $txt = "0|FT|$request->statement_type|$request->corporate_id|$header_id|$date1||$request->debited_account_fund|$request->charges_type|$request->debited_account_charge|00008|$request->currency|B|$business_type|".strtoupper(date("d M"))."\n";
                     foreach ($data as $key => $value) {
                         DB::table('tb_trx_multi_auto')->where('id', $value->id)->update([
                             'status_proses' => 3
@@ -167,9 +176,9 @@ class MultiAutoTfController extends Controller
                         }
 
                         if(in_array('charges_type', $arrget)) {
-                            $txt .= "|" .  $value->charges_type;
+                            $txt .= "|" .  $value->charges_type."||";
                         } else {
-                            $txt .= "|";
+                            $txt .= "|||";
                         }
                          
                         if(in_array('charges_account', $arrget)) {
@@ -291,36 +300,15 @@ class MultiAutoTfController extends Controller
     // =======================================================================================================================================================================
     public function store(Request $request)
     {
-        print_r($request->all());die;
-        $validatedData = $request->all();
-        // cek last data
-        $ceklastdata = SettingModel::orderBy('id', 'desc')->first();
-        if($ceklastdata && $ceklastdata->no_trx != "")
-        {
-            $no_trx = $ceklastdata->no_trx + 1;
-        } else {
-            $no_trx = 1;
-        }
-        $save = SettingModel::create([
-            'no_trx' => $no_trx,
-            'ft' => '',
-            'statement_type' => '',
-            'corporate_id' => '',
-            'header_id' => '',
-            'effective_date' => '',
-            'dependency_header_id' => '',
-            'null1' => '',
-            'null2' => '',
-            'currency' => '',
-            'remarks_1' => '',
-            'remarks_2' => '',
-            'business_type' => ''
-          
+        $request->validate([
+            'addMoreInputFields.*.debited_account_fund' => 'required'
         ]);
-
-        SettingModel::insert($validatedData);
-
-        return response()->json(['code' => '200', 'message'=> 'Berhasil mengupload data']);
+     
+        foreach ($request->addMoreInputFields as $key => $value) {
+            Student::create($value);
+        }
+     
+        return back()->with('success', 'New subject has been added.');
     }
     // =======================================================================================================================================================================
     public function LoadFrameProses1(Request $request)
@@ -331,25 +319,28 @@ class MultiAutoTfController extends Controller
     public function LoadFrameProses2(Request $request)
     {
         $ceklastdata = SettingModel::orderBy('id', 'desc')->first();
+        $now = new \DateTime();
+        $date = $now->format('Y-m-d');
         if($ceklastdata && $ceklastdata->header_id != "")
         {
-                $now = new \DateTime();
-                $date = $now->format('Y-m-d');
                 if($ceklastdata && $ceklastdata->effective_date == $date)
                 {
                         $header_id = $ceklastdata->header_id + 1;
                         $corporate_id = $ceklastdata->corporate_id;
-                        $debited_account = $ceklastdata->debited_account;
+                        $debited_account_fund = $ceklastdata->debited_account_fund;
+                        $debited_account_charge = $ceklastdata->debited_account_charge;
                 } else {
                         $header_id = 1;
                         $corporate_id = $ceklastdata->corporate_id;
-                        $debited_account = $ceklastdata->debited_account;
+                        $debited_account_fund = $ceklastdata->debited_account_fund;
+                        $debited_account_charge = $ceklastdata->debited_account_charge;
                 }
         } else {
                 $header_id = 1;
                 $corporate_id = "";
-                $debited_account = "";
+                $debited_account_fund = "";
+                $debited_account_charge = "";
         }
-        return view('multiautotf.frame.proses2', ['header_id' => $header_id], ['corporate_id' => $corporate_id]);
+        return view('multiautotf.frame.proses2', ['header_id' => $header_id, 'corporate_id' => $corporate_id, 'debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge, 'date_now'=> $date]);
     }
 }

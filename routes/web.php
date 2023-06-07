@@ -24,5 +24,5 @@ Route::get('/export-file-download', [MultiAutoTfController::class, 'ExportFileDo
 Route::get('/load-frame-proses1', [MultiAutoTfController::class, 'LoadFrameProses1'])->name('LoadFrameProses1');
 Route::get('/load-frame-proses2', [MultiAutoTfController::class, 'LoadFrameProses2'])->name('LoadFrameProses2');
 
-Route::post('/store', [MultiAutoTfController::class, 'store'])->name('user.store');
+Route::post('/store-input-fields', [MultiAutoTfController::class, 'store']);
 

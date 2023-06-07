@@ -19,6 +19,7 @@ class SettingModel extends Model
         'effective_date',
         'dependency_header_id',
         'charges_type',
+        'currency',
         'statement_type',
         'null2',
         'currency',

@@ -115,10 +115,50 @@
                     <!--end::Close-->
                 </div>
                 <div class="modal-body">
+                <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#tab_debited_account">Debited Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#tab_transaction_info">Transaction Info</a>
+                    </li>
+                </ul>
                 <form type="POST" enctype='multipart/form-data' id="formUploadExcel">
-                    <div id="mainFrame"></div>
-                    <div id="mainFrame1"></div>
-                </form>
+                    <div class="tab-content" id="myTabContent">
+                        
+                        <div class="tab-pane fade show active" id="tab_debited_account" role="tabpanel">
+                            <div class="row mb-3">
+                            <table class="table" id="dynamicAddRemove">
+                                <tr>
+                                    <th>Fund</th>
+                                    <th>Action</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-control" type="text" placeholder="" id="debited_account_fund" name="debited_account_fund"
+                                        value="<?= $debited_account_fund ?>" />
+                                    </td>
+                                    <td><input class="form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" name="status"/></td>
+                                    <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Account</button></td>
+                                </tr>
+                            </table>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <label for="" class="form-label mt-4">Charge</label>
+                                </div>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" placeholder="" id="debited_account_charge" name="debited_account_charge"
+                                        value="<?= $debited_account_charge ?>" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_transaction_info" role="tabpanel">
+                                <div id="mainFrame"></div>
+                                <div id="mainFrame1"></div>
+                        </div>
+                    </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal" id="btnClose">Close</button>
@@ -141,6 +181,16 @@ $(document).on('click', '#tambahData', function(){
     $('#mainFrame1').empty();
 })
 
+var i = 0;
+    $("#dynamic-ar").click(function () {
+        ++i;
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
+            '][subject]" placeholder="Enter Account" class="form-control" /></td><td><input class="form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" name="status"/></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+            );
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
 
 $(document).ready(function() {
     $('#exportButton').click(function() {
