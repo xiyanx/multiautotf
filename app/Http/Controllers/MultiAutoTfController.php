@@ -30,6 +30,8 @@ class MultiAutoTfController extends Controller
             
             $id = SettingModel::insertGetId([
                 'statement_type' => $request->statement_type,
+                'debited_account_fund' => $request->debited_account_fund,
+                'debited_account_charge' => $request->debited_account_charge,
                 'corporate_id' => $request->corporate_id,
                 'header_id' => $request->header_id,
                 'effective_date' => $request->effective_date,
@@ -65,8 +67,8 @@ class MultiAutoTfController extends Controller
                     if($request->transfer_type != "") { 
                         array_push($arrget,"$request->transfer_type");
                     }
-                    if($request->debited_account != "") { 
-                        array_push($arrget,"$request->debited_account");
+                    if($request->debited_account1 != "") { 
+                        array_push($arrget,"$request->debited_account1");
                     }  
                     if($request->beneficiary_id != "") { 
                         array_push($arrget,"$request->beneficiary_id");
@@ -115,7 +117,7 @@ class MultiAutoTfController extends Controller
                     }
 
                     $data = DB::table('tb_trx_multi_auto')->select($arrget)->where("status_proses" ,2)->where("id_setting" , '!=', null)->get();
-                    $txt = "0|FT|$request->statement_type|$request->corporate_id|$header_id|$date1|||$request->charges_type||00008|$request->currency|B|$business_type|".strtoupper(date("d M"))."\n";
+                    $txt = "0|FT|$request->statement_type|$request->corporate_id|$header_id|$date1||$request->debited_account_fund|$request->charges_type||00008|$request->currency|B|$business_type|".strtoupper(date("d M"))."\n";
                     foreach ($data as $key => $value) {
                         DB::table('tb_trx_multi_auto')->where('id', $value->id)->update([
                             'status_proses' => 3
@@ -133,8 +135,8 @@ class MultiAutoTfController extends Controller
                             $txt .= "|";
                         }
 
-                        if(in_array('debited_account', $arrget)) {
-                            $txt .= "|" . $value->debited_account;
+                        if(in_array('debited_account1', $arrget)) {
+                            $txt .= "|" . $value->debited_account1;
                         } else {
                             $txt .= "|";
                         }
@@ -336,14 +338,18 @@ class MultiAutoTfController extends Controller
                 if($ceklastdata && $ceklastdata->effective_date == $date)
                 {
                         $header_id = $ceklastdata->header_id + 1;
+                        $corporate_id = $ceklastdata->corporate_id;
+                        $debited_account = $ceklastdata->debited_account;
                 } else {
                         $header_id = 1;
+                        $corporate_id = $ceklastdata->corporate_id;
+                        $debited_account = $ceklastdata->debited_account;
                 }
-                $corporate_id = $ceklastdata->corporate_id;
         } else {
                 $header_id = 1;
                 $corporate_id = "";
+                $debited_account = "";
         }
-        return view('multiautotf.frame.proses2',['header_id' => $header_id], ['corporate_id' => $corporate_id]);
+        return view('multiautotf.frame.proses2', ['header_id' => $header_id], ['corporate_id' => $corporate_id]);
     }
 }

@@ -11,7 +11,8 @@ class SettingModel extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
-        'ft',
+        'debited_account_fund',
+        'debited_account_charge',
         'statement_type',
         'corporate_id',
         'header_id',

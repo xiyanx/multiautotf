@@ -117,6 +117,7 @@
                 <div class="modal-body">
                 <form type="POST" enctype='multipart/form-data' id="formUploadExcel">
                     <div id="mainFrame"></div>
+                    <div id="mainFrame1"></div>
                 </form>
                 </div>
                 <div class="modal-footer">
@@ -137,6 +138,7 @@ var table;
 
 $(document).on('click', '#tambahData', function(){
     $('#mainFrame').load('/load-frame-proses1');
+    $('#mainFrame1').empty();
 })
 
 
@@ -305,7 +307,7 @@ $('#formUploadExcel').on('submit', (function(e) {
         success: function(response) {
             blockUI.release();
             if(response.code == "200" && response.state == "1"){
-                $('#mainFrame').load('/load-frame-proses2');
+                $('#mainFrame1').load('/load-frame-proses2');
             } else if(response.code == "200" && response.state == "2"){
                 window.open("<?= url('/export-file-download') ?>?name="+response.filename);
                 table.draw();

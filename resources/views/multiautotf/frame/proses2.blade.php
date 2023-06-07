@@ -3,6 +3,24 @@
     <div class="col-md-4">
         <div class="row mb-3">
             <div class="col-4">
+                <label for="" class="form-label mt-4">Debited Account Fund</label>
+            </div>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="" id="debited_account_fund" name="debited_account_fund"
+                    value="" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <label for="" class="form-label mt-4">Debited Account Charge</label>
+            </div>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="" id="debited_account_charge" name="debited_account_charge"
+                    value="" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
                 <label for="" class="form-label mt-4">Effective Date</label>
             </div>
             <div class="col-8">
@@ -100,14 +118,6 @@
             <div class="col-8">
                 <select class="form-select" aria-label="Select example" id="business_type" name="business_type">
                     <option value="6">Perdangan, Hotel dan Restoran</option>
-                    <option value="1">Pertanian</option>
-                    <option value="2">Pertambangan dan Penggalian</option>
-                    <option value="3">Industri Pengolahan</option>
-                    <option value="4">Listrik, Gas dan Air Minum</option>
-                    <option value="5">Bangunan / Konstruksi</option>
-                    <option value="7">Angkutan dan Komunikasi</option>
-                    <option value="8">Keuangan, Persewaan dan Jasa Perusahaan</option>
-                    <option value="9">Jasa</option>
                 </select>
             </div>
         </div>
@@ -150,7 +160,7 @@
                         <label for="" class="form-label mt-4">Debited Account</label>
                     </div>
                     <div class="col-8">
-                        <input class="form-check-input mt-3 lock_column" type="checkbox" value="debited_account" id="debited_account" name="debited_account"/>
+                        <input class="form-check-input mt-3 lock_column" type="checkbox" value="debited_account" id="debited_account1" name="debited_account1"/>
                     </div>
                 </div>
 
@@ -310,6 +320,7 @@
     $(document).ready(function () {
         $('#dependency_header_id').prop('disabled', true);
         $('#currency').prop('disabled', true);
+        $('#charges_type').prop('disabled', true);
         $("#effective_date").flatpickr();
     })
 
