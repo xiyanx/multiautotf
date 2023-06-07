@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\BankModel;
 use App\Models\SettingModel;
-use App\Models\SettingModel;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\MultiAutoTf;
@@ -226,7 +225,7 @@ class MultiAutoTfController extends Controller
                         }
                         
                         if(in_array('email', $arrget)) {
-                            $txt .= "|" .  $value->email;
+                            $txt .= "|" .  $value->email ."\n";
                         } else {
                             $txt .= "|\n";
                         }
