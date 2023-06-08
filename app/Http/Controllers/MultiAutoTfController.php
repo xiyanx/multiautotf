@@ -128,7 +128,7 @@ class MultiAutoTfController extends Controller
                     }
 
                     $data = DB::table('tb_trx_multi_auto')->select($arrget)->where("status_proses" ,2)->where("id_setting" , '!=', null)->get();
-                    $txt = "0|FT|$request->statement_type|$request->corporate_id|$header_id|$date1||$request->debited_account_fund|$request->charges_type|$request->debited_account_charge|00008|$request->currency|B|$business_type|".strtoupper(date("d M"))."\n";
+                    $txt = "0|FT|$request->statement_type|$request->corporate_id|$header_id|$date1||$request->debited_account_fund|$request->charges_type|$request->debited_account_charge|00008|$request->currency|B|$business_type|$request->remarks_1|$request->remarks_2\n";
                     foreach ($data as $key => $value) {
                         DB::table('tb_trx_multi_auto')->where('id', $value->id)->update([
                             'status_proses' => 3
