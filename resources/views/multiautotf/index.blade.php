@@ -124,8 +124,8 @@
                     </li>
                 </ul>
                 <form type="POST" enctype='multipart/form-data' id="formUploadExcel">
+                    <input type="hidden" name="debited_account_fund" id="debited_account_fund" value="<?= $debited_account_fund ?>">
                     <div class="tab-content" id="myTabContent">
-                        
                         <div class="tab-pane fade show active" id="tab_debited_account" role="tabpanel">
                             <div class="row mb-3">
                             <table class="table" id="dynamicAddRemove">
@@ -135,10 +135,10 @@
                                     <th>Action</th>
                                 </tr>
                                 <tr>
-                                    <td><input class="form-control" type="text" placeholder="" id="debited_account_fund" name="debited_account_fund"
+                                    <td><input class="form-control" type="text" placeholder="" name="account0" id="account0" data-id="0"
                                         value="<?= $debited_account_fund ?>" />
                                     </td>
-                                    <td><input class="form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" name="status"/></td>
+                                    <td><input class="form-check-input mt-3 " type="checkbox" value="status" id="status" name="status" data-id="0"/></td>
                                     <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Account</button></td>
                                 </tr>
                             </table>
@@ -181,16 +181,39 @@ $(document).on('click', '#tambahData', function(){
     $('#mainFrame1').empty();
 })
 
-var i = 0;
+var i = 1;
     $("#dynamic-ar").click(function () {
-        ++i;
-        $("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
-            '][subject]" placeholder="Enter Account" class="form-control" /></td><td><input class="form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" name="status"/></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
-            );
+        let count = i++;
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="account'+count+'" id="account'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control" /></td><td><input class="form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" data-id="'+count+'" name="status'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        );
     });
     $(document).on('click', '.remove-input-field', function () {
+        
         $(this).parents('tr').remove();
     });
+
+
+
+
+
+$(document).on('click', '#status', function () {
+    const id = $(this).data('id');
+    const value= $("#account"+id).val();
+    $('#debited_account_fund').val(value);
+    const checkboxes = document.querySelectorAll('.form-check-input');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        checkboxes.forEach(c => {
+          if (c !== checkbox) {
+            c.checked = false;
+          }
+        });
+      });
+    });
+
+})
+
+  
 
 $(document).ready(function() {
     $('#exportButton').click(function() {
@@ -355,13 +378,14 @@ $('#formUploadExcel').on('submit', (function(e) {
         cache: false,
         processData: false,
         success: function(response) {
+            console.log(response);
             blockUI.release();
-            if(response.code == "200" && response.state == "1"){
-                $('#mainFrame1').load('/load-frame-proses2');
-            } else if(response.code == "200" && response.state == "2"){
-                window.open("<?= url('/export-file-download') ?>?name="+response.filename);
-                table.draw();
-            }
+             if(response.code == "200" && response.state == "1"){
+                 $('#mainFrame1').load('/load-frame-proses2');
+             } else if(response.code == "200" && response.state == "2"){
+                 window.open("<?= url('/export-file-download') ?>?name="+response.filename);
+                 table.draw();
+             }
 
         },
         error: function(error) {

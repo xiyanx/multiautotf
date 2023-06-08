@@ -29,14 +29,14 @@ class MultiAutoTfController extends Controller
      // =======================================================================================================================================================================
      public function UploadMultiAutoTfExcel(Request $request)
      {
-        // return response()->json(['code' => '400', 'data' => $request->all()]);
+       
+        //return response()->json(['code' => '400', 'data' => $request->all()]);
         if($request->state == "1") {
             // DB::table('tb_trx_multi_auto')->truncate();
             $data = Excel::import(new MultiAutoTf, $request->file);
             $data = DB::table('tb_trx_multi_auto')->get();
             return response()->json(['code' => '200', 'message'=> 'Berhasil mengupload data', 'state' => 1]);
          } else {
-            
             $id = SettingModel::insertGetId([
                 'statement_type' => $request->statement_type,
                 'debited_account_fund' => $request->debited_account_fund,
@@ -61,10 +61,11 @@ class MultiAutoTfController extends Controller
                     $now = new \DateTime();
                     $date = $now->format('Y-m-d');
                     $date1 = $now->format('Ymd');
-                    $date2 = $now->format('ymd');
+                    $date2 = $now->format('ym');
                     // tanggal bulan nomor urut
 
-                    $header_id = str_pad($date2.$request->header_id, 8, "0", STR_PAD_LEFT);
+                    $header_id = str_pad($request->header_id, 3, "0", STR_PAD_LEFT);
+                    $header_id = str_pad($date2.$header_id, 8, "0", STR_PAD_LEFT);
                     $business_type = "0".$request->business_type;
 
 
@@ -322,26 +323,30 @@ class MultiAutoTfController extends Controller
         $ceklastdata = SettingModel::orderBy('id', 'desc')->first();
         $now = new \DateTime();
         $date = $now->format('Y-m-d');
+        $date2 = $now->format('ym');
         if($ceklastdata && $ceklastdata->header_id != "")
         {
                 if($ceklastdata && $ceklastdata->effective_date == $date)
                 {
-                        $header_id = $ceklastdata->header_id + 1;
+                        $header_id_hidden = $ceklastdata->header_id + 1;
+                        $header_id_show = $ceklastdata->header_id + 1;
+                        $header_id_show = str_pad($header_id_show, 3, "0", STR_PAD_LEFT);
+                        $header_id_show = str_pad($date2.$header_id_show, 8, "0", STR_PAD_LEFT);
                         $corporate_id = $ceklastdata->corporate_id;
                         $debited_account_fund = $ceklastdata->debited_account_fund;
                         $debited_account_charge = $ceklastdata->debited_account_charge;
                 } else {
-                        $header_id = 1;
+                        $header_id_hidden = 1;
                         $corporate_id = $ceklastdata->corporate_id;
                         $debited_account_fund = $ceklastdata->debited_account_fund;
                         $debited_account_charge = $ceklastdata->debited_account_charge;
                 }
         } else {
-                $header_id = 1;
+                $header_id_hidden = 1;
                 $corporate_id = "";
                 $debited_account_fund = "";
                 $debited_account_charge = "";
         }
-        return view('multiautotf.frame.proses2', ['header_id' => $header_id, 'corporate_id' => $corporate_id, 'debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge, 'date_now'=> $date]);
+        return view('multiautotf.frame.proses2', ['header_id_hidden' => $header_id_hidden, 'header_id_show' => $header_id_show, 'corporate_id' => $corporate_id, 'debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge, 'date_now'=> $date]);
     }
 }

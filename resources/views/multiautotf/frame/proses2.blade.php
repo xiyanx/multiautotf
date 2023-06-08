@@ -1,4 +1,5 @@
 <input type="hidden" id="state" name="state" value="2">
+<input type="hidden" id="header_id" name="header_id" value="<?= $header_id_hidden ?>">
 <div class="row">
     <div class="col-md-4">
         <div class="row mb-3">
@@ -26,8 +27,8 @@
                 <label for="" class="form-label mt-4">Header ID</label>
             </div>
             <div class="col-8">
-                <input class="form-control" type="text" placeholder="" id="header_id" name="header_id"
-                    value="<?= $header_id ?>" />
+                <input class="form-control" type="text" placeholder="" id="header_id10" name="header_id10"
+                    value="<?= $header_id_show ?>" disabled/>
             </div>
         </div>
         <div class="row mb-3">
@@ -296,38 +297,6 @@
         $('#dependency_header_id').prop('disabled', true);
         $("#effective_date").flatpickr();
          
-        // Validate Corporate ID
-        $("#corcheck").hide();
-        let corporate_id_Error = true;
-        $("#corporate_id").keyup(function () {
-            validateCorporateID();
-        });
-    
-        function validateCorporateID() {
-            let corporate_id_Value = $("#corporate_id").val();
-            if (corporate_id_Value.length == "") {
-                $("#corcheck").show();
-                corporate_id_Error = false;
-                return false;
-            } else if (corporate_id_Value.length < 10 || corporate_id_Value.length > 10) {
-                $("#corcheck").show();
-                $("#corcheck").html("**length of corporate id must be 10");
-                corporate_id_Error = false;
-                return false;
-            } else {
-                $("#corcheck").hide();
-            }
-        }
-    
-        // Submit button
-        $("#submitbtn").click(function () {
-            validateCorporateID();
-            if (corporate_id_Error == true) {
-                $("#submitbtn").attr("disabled", true);
-            } else {
-                $("#submitbtn").attr("disabled", false);
-            }
-        });
     })
 
 </script>
