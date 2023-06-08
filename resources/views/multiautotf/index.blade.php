@@ -139,7 +139,7 @@
                                     <td><input class="form-control" type="text" placeholder="" name="account0" id="account0" data-id="0"
                                         value="<?= $debited_account_fund ?>" />
                                     </td>
-                                    <td><input class="form-check-input mt-3 " type="checkbox" value="status" id="status" name="status" data-id="0"/></td>
+                                    <td><input class="groupchek1 form-check-input mt-3" type="checkbox" value="status" id="status" name="status" data-id="0"/></td>
                                     <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Account</button></td>
                                 </tr>
                             </table>
@@ -155,7 +155,7 @@
                                         <td><input class="form-control" type="text" placeholder="" name="account_charge0" id="account_charge0" data-id="0"
                                             value="<?= $debited_account_charge ?>" />
                                         </td>
-                                        <td><input class="form-check-input mt-3 " type="checkbox" value="status" id="status_charge" name="status_charge" data-id="0"/></td>
+                                        <td><input class="groupchek2 form-check-input mt-3" type="checkbox" value="status" id="status_charge" name="status_charge" data-id="0"/></td>
                                         <td><button type="button" name="add" id="dynamic_ar_charge" class="btn btn-outline-primary">Add Account</button></td>
                                     </tr>
                                 </table>
@@ -192,7 +192,7 @@ $(document).on('click', '#tambahData', function(){
 var i = 1;
     $("#dynamic-ar").click(function () {
         let count = i++;
-        $("#dynamicAddRemove").append('<tr><td><input type="text" name="account'+count+'" id="account'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control" /></td><td><input class="form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" data-id="'+count+'" name="status'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="account'+count+'" id="account'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control" /></td><td><input class="groupchek1 form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" data-id="'+count+'" name="status'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
         );
     });
     $(document).on('click', '.remove-input-field', function () {
@@ -203,7 +203,7 @@ var i = 1;
 var ii = 1;
     $("#dynamic_ar_charge").click(function () {
         let count = ii++;
-        $("#chargeAddRemove").append('<tr><td><input type="text" name="account_charge'+count+'" id="account_charge'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control" /></td><td><input class="form-check-input mt-3 lock_column" type="checkbox" value="status" id="status_charge" data-id="'+count+'" name="status_charge'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        $("#chargeAddRemove").append('<tr><td><input type="text" name="account_charge'+count+'" id="account_charge'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control" /></td><td><input class="groupchek2 form-check-input mt-3 lock_column" type="checkbox" value="status" id="status_charge" data-id="'+count+'" name="status_charge'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
         );
     });
     $(document).on('click', '.remove-input-field', function () {
@@ -219,7 +219,8 @@ $(document).on('click', '#status', function () {
     const id = $(this).data('id');
     const value= $("#account"+id).val();
     $('#debited_account_fund').val(value);
-    const checkboxes = document.querySelectorAll('.form-check-input');
+    const checkboxes = document.querySelectorAll('.groupchek1');
+    console.log(checkboxes)
     checkboxes.forEach(checkbox => {
       checkbox.addEventListener('change', () => {
         checkboxes.forEach(c => {
@@ -236,11 +237,12 @@ $(document).on('click', '#status_charge', function () {
     const id = $(this).data('id');
     const value= $("#account_charge"+id).val();
     $('#debited_account_charge').val(value);
-    const checkboxes = document.querySelectorAll('.form-check-input');
+    const checkboxes = document.querySelectorAll('.groupchek2');
     checkboxes.forEach(checkbox => {
       checkbox.addEventListener('change', () => {
         checkboxes.forEach(c => {
           if (c !== checkbox) {
+            c.checked = false;
           }
         });
       });
