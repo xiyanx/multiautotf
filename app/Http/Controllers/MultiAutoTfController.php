@@ -65,7 +65,6 @@ class MultiAutoTfController extends Controller
                     // tanggal bulan nomor urut
 
                     $header_id = str_pad($request->header_id, 3, "0", STR_PAD_LEFT);
-                    $header_id = str_pad($date2.$header_id, 8, "0", STR_PAD_LEFT);
                     $business_type = "0".$request->business_type;
 
 
@@ -330,8 +329,7 @@ class MultiAutoTfController extends Controller
                 {
                         $header_id_hidden = $ceklastdata->header_id + 1;
                         $header_id_show = $ceklastdata->header_id + 1;
-                        $header_id_show = str_pad($header_id_show, 3, "0", STR_PAD_LEFT);
-                        $header_id_show = str_pad($date2.$header_id_show, 8, "0", STR_PAD_LEFT);
+                        $header_id_show = str_pad($header_id_show, 8, "0", STR_PAD_LEFT);
                         $corporate_id = $ceklastdata->corporate_id;
                         $debited_account_fund = $ceklastdata->debited_account_fund;
                         $debited_account_charge = $ceklastdata->debited_account_charge;
@@ -342,11 +340,13 @@ class MultiAutoTfController extends Controller
                         $debited_account_charge = $ceklastdata->debited_account_charge;
                 }
         } else {
-                $header_id_hidden = 1;
+                $header_id_show = 1;
+                $header_id_show = str_pad($header_id_show, 3, "0", STR_PAD_LEFT);
+                $header_id_show = str_pad($date2.$header_id_show, 8, "0", STR_PAD_LEFT);
                 $corporate_id = "";
                 $debited_account_fund = "";
                 $debited_account_charge = "";
         }
-        return view('multiautotf.frame.proses2', ['header_id_hidden' => $header_id_hidden, 'header_id_show' => $header_id_show, 'corporate_id' => $corporate_id, 'debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge, 'date_now'=> $date]);
+        return view('multiautotf.frame.proses2', ['header_id_show' => $header_id_show, 'corporate_id' => $corporate_id, 'debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge, 'date_now'=> $date]);
     }
 }

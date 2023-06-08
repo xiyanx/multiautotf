@@ -1,5 +1,5 @@
 <input type="hidden" id="state" name="state" value="2">
-<input type="hidden" id="header_id" name="header_id" value="<?= $header_id_hidden ?>">
+<input type="hidden" id="header_id" name="header_id" value="<?= $header_id_show ?>">
 <div class="row">
     <div class="col-md-4">
         <div class="row mb-3">
