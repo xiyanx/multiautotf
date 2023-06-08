@@ -125,6 +125,7 @@
                 </ul>
                 <form type="POST" enctype='multipart/form-data' id="formUploadExcel">
                     <input type="hidden" name="debited_account_fund" id="debited_account_fund" value="<?= $debited_account_fund ?>">
+                    <input type="hidden" name="debited_account_charge" id="debited_account_charge" value="<?= $debited_account_charge ?>">
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="tab_debited_account" role="tabpanel">
                             <div class="row mb-3">
@@ -144,13 +145,20 @@
                             </table>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-4">
-                                    <label for="" class="form-label mt-4">Charge</label>
-                                </div>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" placeholder="" id="debited_account_charge" name="debited_account_charge"
-                                        value="<?= $debited_account_charge ?>" />
-                                </div>
+                                <table class="table" id="chargeAddRemove">
+                                    <tr>
+                                        <th>Charge</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="form-control" type="text" placeholder="" name="account_charge0" id="account_charge0" data-id="0"
+                                            value="<?= $debited_account_charge ?>" />
+                                        </td>
+                                        <td><input class="form-check-input mt-3 " type="checkbox" value="status" id="status_charge" name="status_charge" data-id="0"/></td>
+                                        <td><button type="button" name="add" id="dynamic_ar_charge" class="btn btn-outline-primary">Add Account</button></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab_transaction_info" role="tabpanel">
@@ -191,6 +199,17 @@ var i = 1;
         
         $(this).parents('tr').remove();
     });
+    
+var ii = 1;
+    $("#dynamic_ar_charge").click(function () {
+        let count = ii++;
+        $("#chargeAddRemove").append('<tr><td><input type="text" name="account_charge'+count+'" id="account_charge'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control" /></td><td><input class="form-check-input mt-3 lock_column" type="checkbox" value="status" id="status_charge" data-id="'+count+'" name="status_charge'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        
+        $(this).parents('tr').remove();
+    });
 
 
 
@@ -212,6 +231,23 @@ $(document).on('click', '#status', function () {
     });
 
 })
+
+$(document).on('click', '#status_charge', function () {
+    const id = $(this).data('id');
+    const value= $("#account_charge"+id).val();
+    $('#debited_account_charge').val(value);
+    const checkboxes = document.querySelectorAll('.form-check-input');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        checkboxes.forEach(c => {
+          if (c !== checkbox) {
+          }
+        });
+      });
+    });
+
+})
+
 
   
 
