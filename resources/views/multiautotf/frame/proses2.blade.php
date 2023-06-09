@@ -17,8 +17,8 @@
             <div class="col-8">
                 <input class="form-control" type="text" placeholder="" id="corporate_id" name="corporate_id"
                     value="<?= $corporate_id ?>" />
-                <h5 id="corcheck" style="color: red;">
-                    **Corporate ID is missing
+                <h5  style="color: red;" id="corporate_id_msg">
+                    
                 </h5>
             </div>
         </div>
@@ -76,7 +76,7 @@
                 <label for="" class="form-label mt-4">Remarks 1</label>
             </div>
             <div class="col-8">
-                <input class="form-control" type="text" placeholder="" id="remarks_1" name="remarks_1" />
+                <input class="form-control" type="text" placeholder="" id="remarks_1" name="remarks_1" maxlength="18"/>
             </div>
         </div>
         <div class="row mb-3">
@@ -84,7 +84,7 @@
                 <label for="" class="form-label mt-4">Remarks 2</label>
             </div>
             <div class="col-8">
-                <input class="form-control" type="text" placeholder="" id="remarks_2" name="remarks_2" />
+                <input class="form-control" type="text" placeholder="" id="remarks_2" name="remarks_2" maxlength="18"/>
             </div>
         </div>
         <div class="row mb-3">
@@ -285,18 +285,32 @@
                         <input class="form-check-input mt-3 lock_column" type="checkbox" value="email" id="email" name="email" checked/>
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="submitbtn">Submit</button>
+                
             </div>
         </div>
 
     </div>
+
 </div>
 <script>
     $(document).ready(function () {
         $('#dependency_header_id').prop('disabled', true);
         $("#effective_date").flatpickr();
          
+    })
+
+    $(document).on('keyup', '#corporate_id', function() {
+        const value = $('#corporate_id').val()
+        let length = value.length;
+        if(length < 1) {
+            $('#corporate_id_msg').html('**Corporate ID is missing')
+        } else if(length < 10) {
+            $('#corporate_id_msg').html('Corporate ID minimal 10 karakter')
+        } else {
+            $('#corporate_id_msg').html('')
+        }
+        
+
     })
 
 </script>

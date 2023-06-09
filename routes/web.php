@@ -23,6 +23,7 @@ Route::post('/export-data-trx-multi-auto-ajax', [MultiAutoTfController::class, '
 Route::get('/export-file-download', [MultiAutoTfController::class, 'ExportFileDowload'])->name('ExportFileDowload');
 Route::get('/load-frame-proses1', [MultiAutoTfController::class, 'LoadFrameProses1'])->name('LoadFrameProses1');
 Route::get('/load-frame-proses2', [MultiAutoTfController::class, 'LoadFrameProses2'])->name('LoadFrameProses2');
+Route::get('/load-frame-proses3', [MultiAutoTfController::class, 'LoadFrameProses3'])->name('LoadFrameProses3');
 
 Route::post('/store-input-fields', [MultiAutoTfController::class, 'store']);
 

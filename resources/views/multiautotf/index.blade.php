@@ -128,51 +128,96 @@
                     <input type="hidden" name="debited_account_charge" id="debited_account_charge" value="<?= $debited_account_charge ?>">
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="tab_debited_account" role="tabpanel">
-                            <div class="row mb-3">
-                            <table class="table" id="dynamicAddRemove">
-                                <tr>
-                                    <th>Fund</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-control" type="text" placeholder="" name="account0" id="account0" data-id="0"
-                                        value="<?= $debited_account_fund ?>" />
-                                    </td>
-                                    <td><input class="groupchek1 form-check-input mt-3" type="checkbox" value="status" id="status" name="status" data-id="0"/></td>
-                                    <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Account</button></td>
-                                </tr>
-                            </table>
-                            </div>
-                            <div class="row mb-3">
-                                <table class="table" id="chargeAddRemove">
-                                    <tr>
-                                        <th>Charge</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr>
-                                        <td><input class="form-control" type="text" placeholder="" name="account_charge0" id="account_charge0" data-id="0"
-                                            value="<?= $debited_account_charge ?>" />
-                                        </td>
-                                        <td><input class="groupchek2 form-check-input mt-3" type="checkbox" value="status" id="status_charge" name="status_charge" data-id="0"/></td>
-                                        <td><button type="button" name="add" id="dynamic_ar_charge" class="btn btn-outline-primary">Add Account</button></td>
-                                    </tr>
-                                </table>
-                            </div>
+                            
                         </div>
                         <div class="tab-pane fade" id="tab_transaction_info" role="tabpanel">
-                                <div id="mainFrame"></div>
+                            <div class="row">
+                                <div id="mainFrame" class="col-md-6"></div>
+                                    <div class="col-md-3">
+                                        <table class="table" id="dynamicAddRemove">
+                                            <tr>
+                                                <th>Fund</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tr>
+                                                <td><input class="form-control account_fund_msg" type="text" placeholder="" name="account0" id="account0" data-id="0"
+                                                    value="<?= $debited_account_fund ?>" maxlength="10"/>
+                                                    <h5  style="color: red;" id="account_fund_msg0"></h5>
+                                                </td>
+                                                <td><input class="groupchek1 form-check-input mt-3" type="checkbox" value="status" id="status" name="status" data-id="0"/></td>
+                                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Account</button></td>
+                                            </tr>
+                                        </table>
+                                        <!-- <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="col-4">
+                                                Fund
+                                                </div>
+                                                <div class="col-8">
+                                                    <input class="form-control account_fund_msg" type="text" placeholder="" name="account0" id="account0" data-id="0"
+                                                        value="<?= $debited_account_fund ?>" />
+                                                        <h5  style="color: red;" id="account_fund_msg0"></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="col-4">
+                                                    Status
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input class="groupchek1 form-check-input mt-3" type="checkbox" value="status" id="status" name="status" data-id="0"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="col-4">
+                                                    Action
+                                                </div>
+                                                <div class="col-8">
+                                                    <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Account</button>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="col-md-3">
+                                        <table class="table" id="chargeAddRemove">
+                                            <tr>
+                                                <th>Charge</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tr>
+                                                <td><input class="form-control account_charge_msg" type="text" placeholder="" name="account_charge0" id="account_charge0" data-id="0"
+                                                    value="<?= $debited_account_charge ?>" maxlength="10"/>
+                                                <h5  style="color: red;" id="account_charge_msg0"></h5>
+                                                </td>
+                                                <td><input class="groupchek2 form-check-input mt-3" type="checkbox" value="status" id="status_charge" name="status_charge" data-id="0"/></td>
+                                                <td><button type="button" name="add" id="dynamic_ar_charge" class="btn btn-outline-primary">Add Account</button></td>
+                                            </tr>
+                                        </table>
+                                        <!-- <div class="row">
+                                            <div class="col-md-4">
+                                                Charge
+                                            </div>
+                                            <div class="col-md-2">
+                                                Status
+                                            </div>
+                                            <div class="col-md-3">
+                                                Action
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
                                 <div id="mainFrame1"></div>
                         </div>
                     </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="submitbtn">Submit</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal" id="btnClose">Close</button>
 
                 </div>
             </div>
+            </form>
     </div>
 </div>
 <!--begin::Footer-->
@@ -192,7 +237,7 @@ $(document).on('click', '#tambahData', function(){
 var i = 1;
     $("#dynamic-ar").click(function () {
         let count = i++;
-        $("#dynamicAddRemove").append('<tr><td><input type="text" name="account'+count+'" id="account'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control" /></td><td><input class="groupchek1 form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" data-id="'+count+'" name="status'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="account'+count+'" id="account'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control account_fund_msg" /><h5  style="color: red;" id="account_fund_msg'+count+'"></h5></td><td><input class="groupchek1 form-check-input mt-3 lock_column" type="checkbox" value="status" id="status" data-id="'+count+'" name="status'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
         );
     });
     $(document).on('click', '.remove-input-field', function () {
@@ -203,7 +248,7 @@ var i = 1;
 var ii = 1;
     $("#dynamic_ar_charge").click(function () {
         let count = ii++;
-        $("#chargeAddRemove").append('<tr><td><input type="text" name="account_charge'+count+'" id="account_charge'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control" /></td><td><input class="groupchek2 form-check-input mt-3 lock_column" type="checkbox" value="status" id="status_charge" data-id="'+count+'" name="status_charge'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        $("#chargeAddRemove").append('<tr><td><input type="text" name="account_charge'+count+'" id="account_charge'+count+'" data-id="'+count+'" placeholder="Enter Account" class="form-control  account_charge_msg" /><h5  style="color: red;" id="account_charge_msg'+count+'"></h5></td><td><input class="groupchek2 form-check-input mt-3 lock_column" type="checkbox" value="status" id="status_charge" data-id="'+count+'" name="status_charge'+count+'"/></td><td><button type="button" data-id="'+count+'"  class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
         );
     });
     $(document).on('click', '.remove-input-field', function () {
@@ -211,7 +256,33 @@ var ii = 1;
         $(this).parents('tr').remove();
     });
 
+$(document).on('keyup', '.account_fund_msg', function(){
+    const value = $(this).val();
+    const id  = $(this).data('id');
 
+    let length = value.length;
+        if(length < 1) {
+            $('#account_fund_msg'+ id).html('**Corporate ID is missing')
+        } else if(length < 10) {
+            $('#account_fund_msg'+ id).html('Corporate ID minimal 10 karakter')
+        } else {
+            $('#account_fund_msg'+ id).html('')
+        }
+})
+
+$(document).on('keyup', '.account_charge_msg', function(){
+    const value = $(this).val();
+    const id  = $(this).data('id');
+
+    let length = value.length;
+        if(length < 1) {
+            $('#account_charge_msg'+ id).html('**Corporate ID is missing')
+        } else if(length < 10) {
+            $('#account_charge_msg'+ id).html('Corporate ID minimal 10 karakter')
+        } else {
+            $('#account_charge_msg'+ id).html('')
+        }
+})
 
 
 
