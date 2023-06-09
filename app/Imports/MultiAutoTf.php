@@ -17,7 +17,7 @@ class MultiAutoTf implements ToModel, WithHeadingRow
     {
         if($row["effective_date"] != "") {
             return new BankModel([
-                "effective_date" => $row["effective_date"],
+                "effective_date" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(intval($row["effective_date"]))->format('Y-m-d'),
                 "trx_id" => $row["trx_id"],
                 "transfer_type" => $row["transfer_type"],
                 "debited_account" => $row["debited_account"],
