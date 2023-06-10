@@ -18,4 +18,4 @@ use App\Http\Controllers\MultiAutoTfController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('api', MultiAutoTfController::class);
+Route::apiResource('/posts', App\Http\Controllers\Api\ApiController::class);
