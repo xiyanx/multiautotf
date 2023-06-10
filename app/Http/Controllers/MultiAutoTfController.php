@@ -24,7 +24,12 @@ class MultiAutoTfController extends Controller
             $debited_account_fund = "";
             $debited_account_charge = "";
         }
-        return view('multiautotf.index', compact('data'), ['debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge]);
+        
+        $total_transfer = DB::table('tb_setting_multi_auto')
+        ->select('tb_trx_multi_auto.amount')
+        ->join('tb_trx_multi_auto','tb_setting_multi_auto.id','=','tb_trx_multi_auto.id_setting')
+        ->sum('amount');
+        return view('multiautotf.index', compact('data'), ['debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge, 'total_transfer' => $total_transfer]);
     }
      // =======================================================================================================================================================================
      public function UploadMultiAutoTfExcel(Request $request)
@@ -362,11 +367,22 @@ class MultiAutoTfController extends Controller
         return view('multiautotf.frame.proses2', ['header_id_show' => $header_id_show, 'corporate_id' => $corporate_id, 'debited_account_fund' => $debited_account_fund, 'debited_account_charge' => $debited_account_charge, 'date_now'=> $date]);
     }
     // =======================================================================================================================================================================
-    public function DetailPage(Request $request)
+    public function DetailPage($id)
     {
-        $header_id = $request->get('header_id');
-        $data = SettingModel::where('header_id', $header_id)->first();
-        return view('multiautotf.frame.detail', ['data' => $data]);
+        $data_setting = SettingModel::find($id);
+        
+        $data_input = DB::table('tb_setting_multi_auto')
+        ->select('tb_setting_multi_auto.id', 'tb_trx_multi_auto.*')
+        ->join('tb_trx_multi_auto','tb_setting_multi_auto.id','=','tb_trx_multi_auto.id_setting')
+        ->where('tb_setting_multi_auto.id','=',$id)
+        ->get();
+
+        $total_transfer = DB::table('tb_setting_multi_auto')
+        ->select('tb_trx_multi_auto.amount')
+        ->join('tb_trx_multi_auto','tb_setting_multi_auto.id','=','tb_trx_multi_auto.id_setting')
+        ->sum('amount');
+
+        return view('multiautotf.detail', ['data_setting' => $data_setting, 'data_input' => $data_input, 'total_transfer' => $total_transfer]);
     }
 
 }

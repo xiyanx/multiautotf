@@ -7,7 +7,7 @@
         <!--begin::Logo-->
         <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
             <!--begin::Logo image-->
-            <a href="../demo1/index.html">
+            <a href="/">
                 <img alt="Logo" src="https://s.ptuma.com/logo.png" style="height:40px!important;"
                     class="h-25px app-sidebar-logo-default" />
                 <img alt="Logo" src="https://s.ptuma.com/logo1.png" class="h-20px app-sidebar-logo-minimize" />

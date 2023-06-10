@@ -67,7 +67,7 @@
         <div class="card">
             <div class="card-body">
             <div class="table-responsive">
-                <table class="table  table-striped table-bordered" id="table">
+                <!-- <table class="table  table-striped table-bordered" id="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -96,7 +96,33 @@
                     <tbody>
 
                     </tbody>
+                </table> -->
+
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Header ID</th>
+                        <th>Tanggal Create</th>
+                        <th>Tanggal Transfer</th>
+                        <th>Rek Debit</th>
+                        <th>Nama Rekening</th>
+                        <th>Total Transfer</th>
+                    </tr>
+                </thead>
+                @foreach($data as $key => $value)
+                <tr>
+                    <td>{{$value->id}}</td>
+                    <td><a href="detail/{{$value->id}}">{{$value->header_id}}</td>
+                    <td>{{$value->effective_date}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Rp. {{ number_format($total_transfer, 0, ',', '.') }}</td>
+                </tr>
+                @endforeach
                 </table>
+
                 </div>
             </div>
         </div>
@@ -117,20 +143,14 @@
                 <div class="modal-body">
                 <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
                     <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#tab_debited_account">Debited Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tab_transaction_info">Transaction Info</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#tab_transaction_info">Transaction Info</a>
                     </li>
                 </ul>
                 <form type="POST" enctype='multipart/form-data' id="formUploadExcel">
                     <input type="hidden" name="debited_account_fund" id="debited_account_fund" value="<?= $debited_account_fund ?>">
                     <input type="hidden" name="debited_account_charge" id="debited_account_charge" value="<?= $debited_account_charge ?>">
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="tab_debited_account" role="tabpanel">
-                            
-                        </div>
-                        <div class="tab-pane fade" id="tab_transaction_info" role="tabpanel">
+                        <div class="tab-pane fade show active" id="tab_transaction_info" role="tabpanel">
                             <div class="row">
                                 <div id="mainFrame" class="col-md-6"></div>
                                     <div class="col-md-3">
