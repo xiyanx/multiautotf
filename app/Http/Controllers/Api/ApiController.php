@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+use Illuminate\Support\Facades\DB;
 
-//import Model "Post"
 use App\Models\SettingModel;
 
 use Illuminate\Http\Request;
@@ -20,10 +20,18 @@ class ApiController extends Controller
      */
     public function index()
     {
-        //get all posts
-        $posts = SettingModel::latest();
+        $data = SettingModel::all();
 
-        //return collection of posts as a resource
-        return new ApiResource(true, 'List Data', $posts);
+        return new ApiResource(true, 'List Data', $data);
+    }
+    public function show($id)
+    {
+        $data_input = DB::table('tb_setting_multi_auto')
+        ->select('tb_setting_multi_auto.id', 'tb_trx_multi_auto.*')
+        ->join('tb_trx_multi_auto','tb_setting_multi_auto.id','=','tb_trx_multi_auto.id_setting')
+        ->where('tb_setting_multi_auto.id','=',$id)
+        ->get();
+
+        return new ApiResource(true, 'Detail Data!', $data_input);
     }
 }
