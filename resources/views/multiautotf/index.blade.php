@@ -282,9 +282,9 @@ $(document).on('keyup', '.account_fund_msg', function(){
 
     let length = value.length;
         if(length < 1) {
-            $('#account_fund_msg'+ id).html('**Corporate ID is missing')
+            $('#account_fund_msg'+ id).html('**Account Fund is missing')
         } else if(length < 10) {
-            $('#account_fund_msg'+ id).html('Corporate ID minimal 10 karakter')
+            $('#account_fund_msg'+ id).html('Account Fund minimal 10 karakter')
         } else {
             $('#account_fund_msg'+ id).html('')
         }
@@ -296,9 +296,9 @@ $(document).on('keyup', '.account_charge_msg', function(){
 
     let length = value.length;
         if(length < 1) {
-            $('#account_charge_msg'+ id).html('**Corporate ID is missing')
+            $('#account_charge_msg'+ id).html('**Account Charge is missing')
         } else if(length < 10) {
-            $('#account_charge_msg'+ id).html('Corporate ID minimal 10 karakter')
+            $('#account_charge_msg'+ id).html('Account Charge minimal 10 karakter')
         } else {
             $('#account_charge_msg'+ id).html('')
         }

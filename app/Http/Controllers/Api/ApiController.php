@@ -8,7 +8,6 @@ use App\Models\SettingModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-//import Resource "PostResource"
 use App\Http\Resources\ApiResource;
 
 class ApiController extends Controller
